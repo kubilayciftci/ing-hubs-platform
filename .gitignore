@@ -1,0 +1,173 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+
+# VI generated files
+.*.sw[a-z]
+*.un~
+Session.vim
+
+.subsplit
+*plugin.xml
+
+
+# NetBeans generated files
+nb-configuration.xml
+
+# Eclipse generated files
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*~.nib
+.settings/
+.loadpath
+.git/
+
+
+
+# Project generated files
+*.class
+*.log
+*.patch
+*.war
+*.ear
+*.ser
+logs/
+
+# Maven generated files
+*.releaseBackup
+release.properties
+pom.xml.versionsBackup
+target/
+
+# Gradle generated files
+.gradle/
+gradlew.bat
+
+# OS generated files
+*.pid
+*.swp
+*.tmp
+*.old
+*.backup
+*.diff
+!**/src/main/java/**/out/
+!**/src/test/java/**/out/
+
+
+
+# Windows generated files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Package Files #
+*.jar
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
+
+# End of https://www.toptal.com/developers/gitignore/api/java,intellij,macos,gradle
+
+# Tomcat Logs
+/work/
+/logs/
+
+**/work/
+
+/config/
+/tmp/
+/conf/
+
+properties/
+/properties/
+
+.idea/
+/.idea/
+/*/conf/
+/*/config/
+!gradle/config/artifactory.gradle
+**/src/main/resources/application.yml
+**/src/main/resources/access-manager.yml
+**/src/main/resources/licenseconf.json
+**/src/main/resources/*.json
