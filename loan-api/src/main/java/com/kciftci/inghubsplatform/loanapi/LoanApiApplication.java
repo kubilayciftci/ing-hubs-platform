@@ -1,13 +1,11 @@
-package com.kciftci.inghubsplatform;
+package com.kciftci.inghubsplatform.loanapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class INGHubsPlatformApplication {
-
+public class LoanApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(INGHubsPlatformApplication.class, args);
+        SpringApplication.run(LoanApiApplication.class, args);
     }
-
 }

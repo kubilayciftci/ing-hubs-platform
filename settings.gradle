@@ -1,1 +1,3 @@
 rootProject.name = 'ing-hubs-platform'
+
+include 'loan-api'

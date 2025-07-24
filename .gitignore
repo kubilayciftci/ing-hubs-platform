@@ -166,8 +166,3 @@ properties/
 /.idea/
 /*/conf/
 /*/config/
-!gradle/config/artifactory.gradle
-**/src/main/resources/application.yml
-**/src/main/resources/access-manager.yml
-**/src/main/resources/licenseconf.json
-**/src/main/resources/*.json
