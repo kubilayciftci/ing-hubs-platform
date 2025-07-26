@@ -4,24 +4,22 @@ import com.kciftci.inghubsplatform.loanapi.app.model.PayLoan;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 public class PayLoanResponse {
-
-    private int paidInstallmentCount;
-    private Double totalPaidAmount;
+    private Long loanId;
+    private int installmentsPaid;
+    private BigDecimal totalAmountSpent;
     private boolean loanFullyPaid;
 
-    private static PayLoanResponse from(final PayLoan payLoan) {
+    public static PayLoanResponse of(PayLoan payLoan) {
         return PayLoanResponse.builder()
-            .paidInstallmentCount(payLoan.getPaidInstallmentCount())
-            .totalPaidAmount(payLoan.getTotalPaidAmount())
-            .loanFullyPaid(payLoan.isLoanFullyPaid())
-            .build();
-    }
-
-
-    public static PayLoanResponse of(final PayLoan payLoan) {
-        return from(payLoan);
+                .loanId(payLoan.getLoanId())
+                .installmentsPaid(payLoan.getInstallmentsPaid())
+                .totalAmountSpent(payLoan.getTotalAmountSpent())
+                .loanFullyPaid(payLoan.isLoanFullyPaid())
+                .build();
     }
 }

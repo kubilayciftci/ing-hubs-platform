@@ -12,9 +12,9 @@ public interface LoanPort {
 
     Loan createLoan(Long customerId, BigDecimal amount, BigDecimal interest, int numberOfInstallments);
 
-    List<Loan> listLoans(Long customerId, int numberOfInstallments, boolean isPaid);
+    List<Loan> listLoans(Long customerId, Integer numberOfInstallments, Boolean isPaid);
 
     List<LoanInstallment> listLoanInstallments(Long loanId);
 
-    PayLoan payLoan(Long loanId, Double amount, ZonedDateTime paymentDate);
+    PayLoan payLoan(Long loanId, BigDecimal amount, ZonedDateTime paymentDate);
 }

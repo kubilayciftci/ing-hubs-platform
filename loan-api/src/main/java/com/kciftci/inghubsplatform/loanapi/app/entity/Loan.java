@@ -34,6 +34,7 @@ public class Loan {
     private Customer customer;
 
     private BigDecimal loanAmount;
+    private BigDecimal interest;
     private Integer numberOfInstallment;
     private ZonedDateTime createdAt;
     private boolean isPaid;

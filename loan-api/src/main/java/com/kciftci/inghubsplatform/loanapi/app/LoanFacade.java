@@ -20,7 +20,7 @@ public class LoanFacade {
         return loanPort.createLoan(customerId, amount, interest, numberOfInstallments);
     }
 
-    public List<Loan> listLoans(Long customerId, int numberOfInstallments, boolean isPaid) {
+    public List<Loan> listLoans(Long customerId, Integer numberOfInstallments, Boolean isPaid) {
         return loanPort.listLoans(customerId, numberOfInstallments, isPaid);
     }
 
@@ -28,7 +28,7 @@ public class LoanFacade {
         return loanPort.listLoanInstallments(loanId);
     }
 
-    public PayLoan payLoan(Long loanId, Double amount, ZonedDateTime paymentDate) {
+    public PayLoan payLoan(Long loanId, BigDecimal amount, ZonedDateTime paymentDate) {
         return loanPort.payLoan(loanId, amount, paymentDate);
     }
 }

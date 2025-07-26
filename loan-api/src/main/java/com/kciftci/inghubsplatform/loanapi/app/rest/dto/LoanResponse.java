@@ -1,46 +1,47 @@
 package com.kciftci.inghubsplatform.loanapi.app.rest.dto;
 
-import com.kciftci.inghubsplatform.loanapi.app.entity.Customer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.kciftci.inghubsplatform.loanapi.app.entity.Loan;
-import com.kciftci.inghubsplatform.loanapi.app.entity.LoanInstallment;
 import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoanResponse {
-
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private Long id;
-    private Customer customer;
+    private Long customerId;
     private BigDecimal loanAmount;
+    private BigDecimal interest;
     private Integer numberOfInstallment;
-    private ZonedDateTime createdAt;
+    private String createdAt;
     private boolean isPaid;
-    private List<LoanInstallment> installments;
 
-
-    private static LoanResponse from(final Loan loan) {
-        return LoanResponse.builder()
+    public static LoanResponse of(Loan loan) {
+        LoanResponseBuilder builder = LoanResponse.builder()
             .id(loan.getId())
-            .customer(loan.getCustomer())
+            .customerId(loan.getCustomer().getId())
             .loanAmount(loan.getLoanAmount())
+            .interest(loan.getInterest())
             .numberOfInstallment(loan.getNumberOfInstallment())
-            .createdAt(loan.getCreatedAt())
-            .isPaid(loan.isPaid())
-            .installments(loan.getInstallments())
-            .build();
-    }
+            .isPaid(loan.isPaid());
 
-    public static LoanResponse of(final Loan loan) {
-        return from(loan);
+        if (loan.getCreatedAt() != null) {
+            builder.createdAt(loan.getCreatedAt().format(DATE_FORMATTER));
+        }
+
+        return builder.build();
     }
 
     public static List<LoanResponse> listOf(List<Loan> loans) {
-        // TODO: complete this method
-        return List.of();
+        return loans.stream()
+            .map(LoanResponse::of)
+            .collect(Collectors.toList());
     }
 }
