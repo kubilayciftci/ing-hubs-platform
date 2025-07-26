@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "customer")
-public class CustomerEntity {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +32,5 @@ public class CustomerEntity {
     private BigDecimal usedCreditLimit;
 
     @OneToMany(mappedBy = "customer")
-    private List<LoanEntity> loans;
+    private List<Loan> loans;
 }

@@ -10,9 +10,13 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: false
+    defer-datasource-initialization: true
   h2:
     console:
       enabled: false
+  sql:
+    init:
+      mode: always
 logging:
   level:
     root: error

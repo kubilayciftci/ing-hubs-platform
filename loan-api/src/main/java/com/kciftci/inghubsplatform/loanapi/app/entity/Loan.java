@@ -23,7 +23,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "loan")
-public class LoanEntity {
+public class Loan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class LoanEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private CustomerEntity customer;
+    private Customer customer;
 
     private BigDecimal loanAmount;
     private Integer numberOfInstallment;
@@ -39,5 +39,5 @@ public class LoanEntity {
     private boolean isPaid;
 
     @OneToMany(mappedBy = "loan")
-    private List<LoanInstallmentEntity> installments;
+    private List<LoanInstallment> installments;
 }

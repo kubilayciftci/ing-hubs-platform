@@ -21,7 +21,7 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "loan_installment")
-public class LoanInstallmentEntity {
+public class LoanInstallment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class LoanInstallmentEntity {
 
     @ManyToOne
     @JoinColumn(name = "loan_id")
-    private LoanEntity loan;
+    private Loan loan;
 
     private BigDecimal amount;
     private BigDecimal paidAmount;
