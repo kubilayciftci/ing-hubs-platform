@@ -10,9 +10,11 @@ import com.kciftci.inghubsplatform.loanapi.app.rest.dto.LoanResponse;
 import com.kciftci.inghubsplatform.loanapi.app.rest.dto.PayLoanRequest;
 import com.kciftci.inghubsplatform.loanapi.app.rest.dto.PayLoanResponse;
 import com.kciftci.inghubsplatform.loanapi.app.rest.validator.RequestValidator;
+import com.kciftci.inghubsplatform.loanapi.app.security.LoanSecurityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +36,11 @@ public class LoanController {
 
     private final LoanFacade loanFacade;
     private final RequestValidator requestValidator;
+    private final LoanSecurityService loanSecurityService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @PreAuthorize("hasRole('ADMIN')")
     public LoanResponse createLoan(@RequestBody LoanRequest loanRequest) {
         requestValidator.validateInterestRate(loanRequest.getInterest());
         requestValidator.validateInstallments(loanRequest.getNumberOfInstallments());
@@ -47,9 +51,14 @@ public class LoanController {
     }
 
     @GetMapping
-    public List<LoanResponse> listLoans(@RequestParam Long customerId,
+    public List<LoanResponse> listLoans(@RequestParam(required = false) Long customerId,
                                         @RequestParam(required = false) Integer numberOfInstallments,
                                         @RequestParam(required = false) Boolean isPaid) {
+        if (customerId == null) {
+            customerId = loanSecurityService.getCurrentCustomerId();
+        } else {
+            loanSecurityService.validateCustomerAccess(customerId);
+        }
 
         List<Loan> loans = loanFacade.listLoans(customerId, numberOfInstallments, isPaid);
         return LoanResponse.listOf(loans);
@@ -57,15 +66,17 @@ public class LoanController {
 
     @GetMapping("/installments/{loanId}")
     public List<LoanInstallmentResponse> listInstallments(@PathVariable Long loanId) {
+        loanSecurityService.validateLoanAccess(loanId);
+        
         List<LoanInstallment> installments = loanFacade.listLoanInstallments(loanId);
         return LoanInstallmentResponse.listOf(installments);
     }
 
     @PostMapping("/pay/{loanId}")
     public PayLoanResponse payLoan(@PathVariable Long loanId, @RequestBody PayLoanRequest payLoanRequest) {
+        loanSecurityService.validateLoanAccess(loanId);
+        
         PayLoan paidLoan = loanFacade.payLoan(loanId, payLoanRequest.getAmount(), payLoanRequest.getPaymentDate());
         return PayLoanResponse.of(paidLoan);
     }
-
-
 }
