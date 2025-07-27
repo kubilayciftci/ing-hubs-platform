@@ -86,7 +86,7 @@
           }
         },
         {
-          "name": "Create Loan - Customer (Should Fail)",
+          "name": "Create Loan - Customer - Failed",
           "request": {
             "method": "POST",
             "header": [
