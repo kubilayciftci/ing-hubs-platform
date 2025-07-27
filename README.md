@@ -231,7 +231,7 @@ The application comes with pre-configured users and customers:
 ```text
   - Username: kubilay
   - Password: customer123
-  - Role: CUSTOMER`
+  - Role: CUSTOMER
   - Customer ID: 1
 ```
 ```text
