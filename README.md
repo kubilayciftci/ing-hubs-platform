@@ -186,7 +186,7 @@ users: id, username, password, role, customerId
 
 1. **Clone the repository**:
 ```bash
-git clone <repository-url>
+git clone https://github.com/kubilayciftci/ing-hubs-platform.git
 cd ing-hubs-platform
 ```
 
@@ -197,7 +197,7 @@ cd ing-hubs-platform
 
 3. **Run the application**:
 ```bash
-./gradlew bootRun
+./gradlew :loan-api:bootRun
 ```
 
 The application will start on `http://localhost:8080`
@@ -262,9 +262,17 @@ Run unit tests:
 ./gradlew test
 ```
 
-### API Testing with cURL
+### API Testing
 
-#### 1. Create a Loan (Admin)
+#### Option 1: Postman Collection (Recommended)
+A complete Postman collection is available in the project:
+- **File**: `loan-api/loan-api-postman-collection.json`
+- **Import**: Open Postman → Import → Select the JSON file
+- **Environment**: The collection includes pre-configured requests with authentication
+
+#### Option 2: cURL Commands
+
+##### 1. Create a Loan (Admin)
 ```bash
 curl -X POST http://localhost:8080/loan \
   -H "Content-Type: application/json" \
@@ -277,19 +285,19 @@ curl -X POST http://localhost:8080/loan \
   }'
 ```
 
-#### 2. List Loans (Customer)
+##### 2. List Loans (Customer)
 ```bash
 curl -X GET "http://localhost:8080/loan" \
   -u kubilay:customer123
 ```
 
-#### 3. List Installments (Customer)
+##### 3. List Installments (Customer)
 ```bash
 curl -X GET http://localhost:8080/loan/installments/1 \
   -u kubilay:customer123
 ```
 
-#### 4. Pay Loan (Customer)
+##### 4. Pay Loan (Customer)
 ```bash
 curl -X POST http://localhost:8080/loan/pay/1 \
   -H "Content-Type: application/json" \
