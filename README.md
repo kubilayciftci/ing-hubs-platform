@@ -1,4 +1,4 @@
-# ING Hubs Platform - Loan Management Service
+# ING Hubs Platform - Loan API Services
 
 ## Overview
 
